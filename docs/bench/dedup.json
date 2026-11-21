@@ -1,0 +1,106 @@
+{
+  "length_sensitivity": [
+    {
+      "words": "~75",
+      "median": 6.0,
+      "p90": 10,
+      "max": 10
+    },
+    {
+      "words": "~150",
+      "median": 4.0,
+      "p90": 7,
+      "max": 10
+    },
+    {
+      "words": "~325",
+      "median": 2.0,
+      "p90": 6,
+      "max": 8
+    },
+    {
+      "words": "~800",
+      "median": 2.0,
+      "p90": 4,
+      "max": 5
+    }
+  ],
+  "thresholds": [
+    {
+      "threshold": 3,
+      "near_caught": 0.5,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 4
+    },
+    {
+      "threshold": 5,
+      "near_caught": 0.6711111111111111,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 6
+    },
+    {
+      "threshold": 7,
+      "near_caught": 0.8,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 8
+    },
+    {
+      "threshold": 9,
+      "near_caught": 0.8777777777777778,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 10
+    },
+    {
+      "threshold": 12,
+      "near_caught": 0.9733333333333334,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 13
+    },
+    {
+      "threshold": 16,
+      "near_caught": 1.0,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 17
+    },
+    {
+      "threshold": 20,
+      "near_caught": 1.0,
+      "false_positives": 0.0,
+      "guarantee_needs_bands": 21
+    }
+  ],
+  "summary": {
+    "near_pairs": 450,
+    "unrelated_pairs": 150,
+    "near_median": 3.5,
+    "near_max": 16,
+    "unrelated_min": 24,
+    "unrelated_median": 32.0
+  },
+  "bloom": [
+    {
+      "urls": 10000,
+      "bloom_mb": 0.01,
+      "set_mb_estimate": 1.0,
+      "bytes_per_url": 1.2,
+      "measured_error": 0.009,
+      "hash_functions": 7
+    },
+    {
+      "urls": 100000,
+      "bloom_mb": 0.12,
+      "set_mb_estimate": 10.0,
+      "bytes_per_url": 1.2,
+      "measured_error": null,
+      "hash_functions": 7
+    },
+    {
+      "urls": 1000000,
+      "bloom_mb": 1.2,
+      "set_mb_estimate": 100.0,
+      "bytes_per_url": 1.2,
+      "measured_error": null,
+      "hash_functions": 7
+    }
+  ]
+}

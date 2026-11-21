@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Check formatting
+        run: ruff format --check .
+
+      - name: Type check
+        run: mypy
+
+      # The suite starts real HTTP servers on localhost. It never touches the
+      # public internet, so CI is deterministic and crawls nobody.
+      - name: Test
+        run: pytest -q --cov=nanocrawl --cov-report=term-missing --cov-fail-under=90
+
+  smoke:
+    name: end-to-end smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      - name: Crawl the bundled test site
+        run: |
+          nanocrawl --demo --out corpus.jsonl --delay 0 --max-pages 30 \
+            --stats-json stats.json
+          python - <<'PY'
+          import json
+          records = [json.loads(line) for line in open("corpus.jsonl")]
+          stats = json.load(open("stats.json"))
+          assert records, "the crawl produced no documents"
+          assert all(r["text"].strip() for r in records), "a document has no text"
+          assert stats["pages_fetched"] > 5, stats
+          print(f"{len(records)} documents, {stats['pages_fetched']} pages fetched")
+          PY
+
+      # A benchmark that cannot run is a benchmark whose numbers will rot.
+      - name: Run the benchmarks at toy scale
+        run: |
+          python benchmarks/bench_crawl.py --pages 20 --page-delay 0.005 \
+            --concurrency 1 4 --polite-concurrency 4 --polite-pages 6
+          python benchmarks/bench_simhash.py
+
+  docker:
+    name: docker build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the image
+        run: docker build -t nanocrawl:ci .
+      - name: Crawl the demo site inside the container
+        run: docker run --rm nanocrawl:ci --demo --delay 0 --max-pages 15 --out /tmp/c.jsonl

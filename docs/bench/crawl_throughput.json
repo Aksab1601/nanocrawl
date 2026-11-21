@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "pages": 200,
+    "page_delay_s": 0.02,
+    "rate_limit_s": 0.1,
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39"
+  },
+  "rows": [
+    {
+      "concurrency": 1,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 5.11,
+      "pages_per_second": 39.32,
+      "fetch_p50_ms": 22.68,
+      "fetch_p95_ms": 23.22,
+      "min_gap_ms": 23.8,
+      "speedup": 1.0
+    },
+    {
+      "concurrency": 2,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 2.91,
+      "pages_per_second": 69.18,
+      "fetch_p50_ms": 26.19,
+      "fetch_p95_ms": 29.26,
+      "min_gap_ms": 0.1,
+      "speedup": 1.76
+    },
+    {
+      "concurrency": 4,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 1.7,
+      "pages_per_second": 118.44,
+      "fetch_p50_ms": 31.39,
+      "fetch_p95_ms": 37.04,
+      "min_gap_ms": 0.1,
+      "speedup": 3.01
+    },
+    {
+      "concurrency": 8,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 1.23,
+      "pages_per_second": 163.38,
+      "fetch_p50_ms": 43.89,
+      "fetch_p95_ms": 56.19,
+      "min_gap_ms": 0.1,
+      "speedup": 4.16
+    },
+    {
+      "concurrency": 16,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 1.35,
+      "pages_per_second": 148.75,
+      "fetch_p50_ms": 51.2,
+      "fetch_p95_ms": 76.14,
+      "min_gap_ms": 0.0,
+      "speedup": 3.78
+    },
+    {
+      "concurrency": 32,
+      "delay": 0.0,
+      "pages": 201,
+      "elapsed_s": 1.7,
+      "pages_per_second": 118.17,
+      "fetch_p50_ms": 69.0,
+      "fetch_p95_ms": 1057.25,
+      "min_gap_ms": 0.1,
+      "speedup": 3.01
+    },
+    {
+      "concurrency": 4,
+      "delay": 0.1,
+      "pages": 25,
+      "elapsed_s": 2.44,
+      "pages_per_second": 10.23,
+      "fetch_p50_ms": 23.57,
+      "fetch_p95_ms": 23.92,
+      "min_gap_ms": 96.9
+    },
+    {
+      "concurrency": 16,
+      "delay": 0.1,
+      "pages": 25,
+      "elapsed_s": 2.45,
+      "pages_per_second": 10.22,
+      "fetch_p50_ms": 23.48,
+      "fetch_p95_ms": 25.6,
+      "min_gap_ms": 96.8
+    }
+  ]
+}

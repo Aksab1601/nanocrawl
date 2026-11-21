@@ -1,0 +1,22 @@
+
+200 pages, 20 ms server latency each, no rate limit
+
+ workers  pages  elapsed  pages/s  speedup  p95 ms
+--------------------------------------------------
+       1    201    5.11s    39.32    1.00x      23
+       2    201    2.91s    69.18    1.76x      29
+       4    201    1.70s   118.44    3.01x      37
+       8    201    1.23s   163.38    4.16x      56
+      16    201    1.35s   148.75    3.78x      76
+      32    201    1.70s   118.17    3.01x    1057
+
+with a 0.1s per-host rate limit (the default is 0.5s)
+
+ workers  pages  elapsed  pages/s   min gap
+-------------------------------------------
+       4     25    2.44s    10.23       97ms
+      16     25    2.45s    10.22       97ms
+
+  throughput is capped at ~10.0 pages/s however many workers run, and no two requests to the host ever land closer than the delay.
+
+wrote docs/bench/crawl_throughput.json
