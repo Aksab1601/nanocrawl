@@ -4,8 +4,8 @@
 
 [![CI](https://github.com/Aksab1601/nanocrawl/actions/workflows/ci.yml/badge.svg)](https://github.com/Aksab1601/nanocrawl/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)
-![Tests](https://img.shields.io/badge/tests-pytest-blue)
-![Coverage](https://img.shields.io/badge/CI%20coverage-%E2%89%A590%25-blue)
+![Tests](https://img.shields.io/badge/tests-160%20passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 "Design a web crawler" is a standard systems interview question because it is
